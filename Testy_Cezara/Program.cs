@@ -1,20 +1,18 @@
-﻿using static System.Net.Mime.MediaTypeNames;
-
-namespace Testy_Cezara
+﻿namespace Testy_Cezara
 {
     internal class Program
     {
-        static List<char> alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-
         static void Main(string[] args)
         {
             while (true) 
             {
-                GetVariables();
+                (string text, int key) = ReadUserInput();
+
+                Console.WriteLine(Run(text, key));
             }
         }
 
-        private static void GetVariables()
+        private static (string, int) ReadUserInput()
         {
             Console.Write("Podaj tekst do zaszyfrowania: ");
             string text = Console.ReadLine();
@@ -24,56 +22,34 @@ namespace Testy_Cezara
             Console.Write("Podaj klucz do zaszyfrowania: ");
             int key = int.Parse(Console.ReadLine());
 
-            Console.WriteLine(Engine(text, key)); ;
+            return (text, key);
         }
 
-        private static string Engine(string text, int key)
+        private static string Run(string text, int key)
         {
-            List<char> textList = new List<char>();
-            List<char> encryptedTextList = new List<char>();
+            List<char> textList = new(text);
 
-            TextToListConvert(text, textList);
+            List<char> encryptedList = ApplyCaesarAlgorithm(key, textList);
 
-            Encryption(key, encryptedTextList, textList);
-
-            return ListToStringConvert(encryptedTextList);
+            return string.Concat(encryptedList);
         }
 
-        private static void TextToListConvert(string text, List<char> textList)
+        private static List<char> ApplyCaesarAlgorithm(int key, List<char> textList)
         {
-            for (int i = 0; i < text.Length; i++)
+            List<char> encryptedTextList = new();
+
+            foreach (char character in textList)
             {
-                if (text[i] == ' ')
-                    textList.Add(' ');
-                else
-                    textList.Add(text[i]);
-            }
-        }
-
-        private static void Encryption(int key, List<char> encryptedTextList, List<char> textList)
-        {
-            for (int i = 0; i < textList.Count(); i++)
-            {
-                if (textList[i] == ' ')
+                if (character == ' ')
                     encryptedTextList.Add(' ');
                 else
                 {
-                    int listIndex = alphabet.IndexOf(textList[i]);
-                    encryptedTextList.Add(alphabet[((listIndex + key) % 26 + 26) % 26]);
+                    int listIndex = character - 'a';
+                    encryptedTextList.Add((char)((((listIndex + key) % 26 + 26) % 26) + 'a'));
                 }
             }
-        }
 
-        private static string ListToStringConvert(List<char> encryptedTextList)
-        {
-            string encrypytedText = "";
-
-            foreach (char c in encryptedTextList)
-            {
-                encrypytedText += c;
-            }
-
-            return encrypytedText;
+            return encryptedTextList;
         }
     }
 }
