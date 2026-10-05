@@ -1,6 +1,6 @@
 ﻿namespace Testy_Cezara
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -8,7 +8,7 @@
             {
                 (string text, int key) = ReadUserInput();
 
-                Console.WriteLine(Run(text, key));
+                Console.WriteLine(RunCeaser(text, key));
             }
         }
 
@@ -25,7 +25,7 @@
             return (text, key);
         }
 
-        private static string Run(string text, int key)
+        public static string RunCeaser(string text, int key)
         {
             List<char> textList = new(text);
 

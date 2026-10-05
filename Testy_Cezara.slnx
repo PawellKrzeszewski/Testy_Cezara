@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="Testy_Cezara/Testy_Cezara.csproj" />
+  <Project Path="Testy_Cezara_Jednostkowe/Testy_Cezara_Jednostkowe.csproj" Id="9ae17f91-df16-478b-9591-9579abb66467" />
 </Solution>
