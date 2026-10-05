@@ -9,7 +9,9 @@
         [DataRow("def", -3, "abc")]
         [DataRow("abc", 29, "def")]
         [DataRow("ab cd", 2, "cd ef")]
-        public void Run_DlaPodanychDanych_ZwracaPoprawnieZaszyfrowanyTekst(string wejscie, int klucz, string oczekiwanyWynik)
+        
+        [TestMethod]
+        public void RunTest(string wejscie, int klucz, string oczekiwanyWynik)
         {
             string aktualnyWynik = Program.RunCeaser(wejscie, klucz);
 

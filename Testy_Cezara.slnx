@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="Testy_Cezara/Testy_Cezara.csproj" />
   <Project Path="Testy_Cezara_Jednostkowe/Testy_Cezara_Jednostkowe.csproj" Id="9ae17f91-df16-478b-9591-9579abb66467" />
+  <Project Path="Testy_Cezara_Obiektowo/Testy_Cezara_Obiektowo.csproj" Id="9bc0ad75-4925-431c-a508-2b9eb8f26a96" />
 </Solution>
